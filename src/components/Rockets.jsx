@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/rockets.css';
 import { getAPI } from '../redux/rocketsSlice';
 
 const RocketList = () => {
