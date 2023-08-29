@@ -1,0 +1,19 @@
+
+.rocketC {
+  display: flex;
+  margin: 10px;
+  margin-left: 70px;
+  margin-bottom: 30px;
+}
+
+.rocketImg {
+  width: 280px;
+}
+
+.contentC {
+  padding-right: 50px;
+  margin-left: 15px;
+}
+.rocketDesc {
+  font-size: large;
+}
