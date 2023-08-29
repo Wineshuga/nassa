@@ -31,7 +31,7 @@ const missionsSlice = createSlice({
         const data = action.payload.map((mission) => ({
           name: mission.mission_name,
           id: mission.mission_id,
-          description: mission.description,
+          desc: mission.description,
         }));
         return {
           ...state,
