@@ -26,6 +26,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "rules": {
+      "react/prop-types": "off"
+
+    },
     "extends": [
       "react-app",
       "react-app/jest"
