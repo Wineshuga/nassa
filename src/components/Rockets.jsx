@@ -9,9 +9,12 @@ const RocketList = () => {
   const { RocketList, isLoading, error } = useSelector(
     (store) => store.rockets,
   );
+
   useEffect(() => {
-    dispatch(getAPI());
-  }, [dispatch]);
+    if (RocketList.length === 0) {
+      dispatch(getAPI());
+    }
+  }, [dispatch, RocketList.length]);
   if (isLoading === true) {
     return <div>Loading</div>;
   }
@@ -93,7 +96,8 @@ Rocket.propTypes = {
   disc: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   Reservation: PropTypes.number.isRequired,
-  reservationState: PropTypes.number.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  reservationState: PropTypes.object.isRequired,
 };
 
 export default RocketList;

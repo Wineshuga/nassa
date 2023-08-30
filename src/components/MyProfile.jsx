@@ -1,25 +1,36 @@
+// import React from 'react';
 import { useSelector } from 'react-redux';
+import { Container, ListGroup } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import '../styles/rockets.css';
 
-const MyProfile = () => {
-  const { missions } = useSelector((store) => store.missions);
+const Rocket = () => {
+  const rockets = useSelector((state) => state.rockets);
+  const myRockets = rockets.RocketList.filter((rocket) => rocket.reserved === true);
+  if (myRockets.length === 0) {
+    return (
+      <Container>
+        <h3>My Rockets</h3>
+        You have not reserved any rockets.
+      </Container>
+    );
+  }
   return (
-    <div className="container d-flex">
-      <section className="">
-        <h3>My Missions</h3>
-        <ul className="list-group">
-          {missions.filter((item) => item.reserved)
-            .map((item) => (
-              <li
-                key={item.id}
-                className="list-group-item p-4"
-              >
-                {item.name}
-              </li>
-            ))}
-        </ul>
-      </section>
-    </div>
+    <Container>
+      <h3>My Rockets</h3>
+      <ListGroup as="ol" numbered>
+        {myRockets.map((rocket) => (
+          <ListGroup.Item as="li" key={rocket.id}>{rocket.name}</ListGroup.Item>
+        ))}
+      </ListGroup>
+    </Container>
   );
 };
+
+const MyProfile = () => (
+  <Container className="d-flex">
+    <Rocket />
+  </Container>
+);
 
 export default MyProfile;
