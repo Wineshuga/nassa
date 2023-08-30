@@ -10,24 +10,43 @@ const Mission = () => {
     dispatch(fetchMissions());
   }, [dispatch]);
 
+  const handleStatus = (reserved) => {
+    if (reserved) {
+      return <span>Active Member</span>;
+    }
+    return <span>NOT A MEMBER</span>;
+  };
+
+  const handleButtons = (id, reserved) => {
+    if (reserved) {
+      return (
+        <button
+          type="button"
+          onClick={() => dispatch(leaveMission({ id }))}
+        >
+          Leave Mission
+        </button>
+      );
+    }
+    return (
+      <button
+        type="button"
+        onClick={() => dispatch(joinMission({ id }))}
+      >
+        Join Mission
+      </button>
+    );
+  };
+
   const mission = missions.map((item) => (
     <tr key={item.id}>
       <td className="fw-bold">{ item.name }</td>
       <td>{ item.desc }</td>
-      <td className="align-middle text-center"><span>NOT A MEMBER</span></td>
       <td className="align-middle text-center">
-        <button
-          type="button"
-          onClick={() => dispatch(joinMission({ id: item.id }))}
-        >
-          Join Mission
-        </button>
-        <button
-          type="button"
-          onClick={() => dispatch(leaveMission({ id: item.id }))}
-        >
-          Leave Mission
-        </button>
+        {handleStatus(item.reserved)}
+      </td>
+      <td className="align-middle text-center">
+        {handleButtons(item.id, item.reserved)}
       </td>
     </tr>
   ));
