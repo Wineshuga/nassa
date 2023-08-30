@@ -14,15 +14,16 @@ const Mission = () => {
 
   const handleStatus = (reserved) => {
     if (reserved) {
-      return <span>Active Member</span>;
+      return <span className="bg-info text-white p-1 rounded">Active Member</span>;
     }
-    return <span>NOT A MEMBER</span>;
+    return <span className="bg-secondary text-white p-1 rounded">NOT A MEMBER</span>;
   };
 
   const handleButtons = (id, reserved) => {
     if (reserved) {
       return (
         <button
+          className="text-danger border-2 border-danger"
           type="button"
           onClick={() => dispatch(leaveMission({ id }))}
         >
@@ -32,6 +33,7 @@ const Mission = () => {
     }
     return (
       <button
+        className="text-secondary border-2"
         type="button"
         onClick={() => dispatch(joinMission({ id }))}
       >
