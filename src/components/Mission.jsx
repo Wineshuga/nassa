@@ -7,8 +7,10 @@ const Mission = () => {
   const missions = useSelector((store) => store.missions.missions);
 
   useEffect(() => {
-    dispatch(fetchMissions());
-  }, [dispatch]);
+    if (missions.length === 0) {
+      dispatch(fetchMissions());
+    }
+  }, [dispatch, missions.length]);
 
   const handleStatus = (reserved) => {
     if (reserved) {
