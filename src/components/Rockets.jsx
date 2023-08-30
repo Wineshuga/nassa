@@ -53,28 +53,6 @@ const RocketList = () => {
   return <div>{error}</div>;
 };
 
-// const Rocket = (props) => {
-//   const dispatch = useDispatch();
-
-//   const { id, name, disc, image, Reservation, reservationState } = props;
-//   return (
-//     <div className="rocketC" key={id}>
-//       <img className="rocketImg" src={image} alt={name} />
-//       <div className="contentC">
-//         <h4 className="rocektName">{name}</h4>
-//         <div className="rocketDesc">{disc}</div>
-//         <div
-//           type="button"
-//           onClick={() => {
-//             dispatch(reservation(Reservation));
-//           }}
-//         >
-//           {reservationState}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 const Rocket = (props) => {
   const dispatch = useDispatch();
 
