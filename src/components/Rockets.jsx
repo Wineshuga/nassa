@@ -53,6 +53,28 @@ const RocketList = () => {
   return <div>{error}</div>;
 };
 
+// const Rocket = (props) => {
+//   const dispatch = useDispatch();
+
+//   const { id, name, disc, image, Reservation, reservationState } = props;
+//   return (
+//     <div className="rocketC" key={id}>
+//       <img className="rocketImg" src={image} alt={name} />
+//       <div className="contentC">
+//         <h4 className="rocektName">{name}</h4>
+//         <div className="rocketDesc">{disc}</div>
+//         <div
+//           type="button"
+//           onClick={() => {
+//             dispatch(reservation(Reservation));
+//           }}
+//         >
+//           {reservationState}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 const Rocket = (props) => {
   const dispatch = useDispatch();
 
@@ -60,7 +82,10 @@ const Rocket = (props) => {
     {
       id, name, disc, image, Reservation, reservationState,
     } = props;
-  /* eslint-disable */
+  const handleReservationClick = () => {
+    dispatch(reservation(Reservation));
+  };
+
   return (
     <div className="rocketC" key={id}>
       <img className="rocketImg" src={image} alt={name} />
@@ -68,16 +93,19 @@ const Rocket = (props) => {
         <h4 className="rocektName">{name}</h4>
         <div className="rocketDesc">{disc}</div>
         <div
-          type="button"
-          onClick={() => {
-            dispatch(reservation(Reservation));
+          role="button"
+          tabIndex="0"
+          onClick={handleReservationClick}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleReservationClick();
+            }
           }}
         >
           {reservationState}
         </div>
       </div>
     </div>
-    /* eslint-enable */
   );
 };
 
