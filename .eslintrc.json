@@ -24,7 +24,13 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "react-a11y/your-rule-name": "off",
-    "import/no-extraneous-dependencies": "off" // Disable the rule
+    "import/no-extraneous-dependencies": "off",
+    // Add the following rules
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": "off",
+    "react/jsx-props-no-spreading": "off"
+    
     // Other rules
   },
   "overrides": [
