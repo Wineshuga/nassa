@@ -44,7 +44,7 @@ const Rocket = ({ item, reservationAction }) => {
     } = item;
 
   return (
-    <div className="rocketC" key={id}>
+    <div className="rocketC" key={id} data-testid="Rocket">
       <img className="rocketImg" src={images} alt={name} />
       <div className="contentC">
         <h4 className="rocektName">{name}</h4>
