@@ -23,25 +23,28 @@ const rocketsSlice = createSlice({
   initialState,
   reducers: {
     reservation: (state, action) => {
-      const id = action.payload;
-      state.RocketList = state.RocketList.map((rocket) => {
+      const { payload: id } = action;
+      const updatedRocketList = state.RocketList.map((rocket) => {
         if (rocket.id !== id) {
           return rocket;
         }
-        if (rocket.id === id) {
-          if (rocket.reserved === true) {
-            return { ...rocket, reserved: false };
-          }
-        }
-        return { ...rocket, reserved: true };
+        return { ...rocket, reserved: !rocket.reserved };
       });
+
+      return {
+        ...state,
+        RocketList: updatedRocketList,
+      };
     },
   },
   extraReducers(builder) {
     builder
-      .addCase(getAPI.pending, (state) => {
-        state.isLoading = true;
-      })
+      .addCase(getAPI.pending, (state) => (
+        {
+          ...state,
+          isLoading: true,
+        }
+      ))
       .addCase(getAPI.fulfilled, (state, action) => {
         const rockets = [];
         action.payload.map((item) => {
@@ -55,15 +58,18 @@ const rocketsSlice = createSlice({
           };
           return rockets.push(newRocket);
         });
-        state.RocketList = rockets;
-        state.isLoading = false;
+        return {
+          ...state,
+          RocketList: rockets,
+          isLoading: false,
+        };
       })
-      .addCase(getAPI.rejected, (state, action) => {
-        state.isLoading = false;
-        state.RocketList = [];
-
-        state.error = action.error.message;
-      });
+      .addCase(getAPI.rejected, (state, action) => ({
+        ...state,
+        isLoading: false,
+        RocketList: [],
+        error: action.error.message,
+      }));
   },
 });
 
