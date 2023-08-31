@@ -1,16 +1,14 @@
-/* eslint-disable max-len */
-/* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 const url = 'https://api.spacexdata.com/v3/rockets';
 
 export const getAPI = createAsyncThunk('Rockets/fetchRocket', async () => {
   try {
-    const response = await axios.get(url);
-    return response.data;
-  } catch (err) {
-    return err.message;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error('Network response was not ok');
   }
 });
 
@@ -25,47 +23,47 @@ const rocketsSlice = createSlice({
   initialState,
   reducers: {
     reservation: (state, action) => {
-      const id = action.payload;
-      state.RocketList = state.RocketList.map((rocket) => {
+      const { payload: id } = action;
+      const updatedRocketList = state.RocketList.map((rocket) => {
         if (rocket.id !== id) {
           return rocket;
         }
-        if (rocket.id === id) {
-          if (rocket.reserved === true) {
-            return { ...rocket, reserved: false };
-          }
-        }
-        return { ...rocket, reserved: true };
+        return { ...rocket, reserved: !rocket.reserved };
       });
+
+      return {
+        ...state,
+        RocketList: updatedRocketList,
+      };
     },
   },
   extraReducers(builder) {
     builder
-      .addCase(getAPI.pending, (state) => {
-        state.isLoading = true;
-      })
+      .addCase(getAPI.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
       .addCase(getAPI.fulfilled, (state, action) => {
-        const rockets = [];
-        action.payload.map((item) => {
-          let newRocket = {};
-          newRocket = {
-            id: item.id,
-            name: item.rocket_name,
-            disc: item.description,
-            images: item.flickr_images[1],
-            reserved: false,
-          };
-          return rockets.push(newRocket);
-        });
-        state.RocketList = rockets;
-        state.isLoading = false;
-      })
-      .addCase(getAPI.rejected, (state, action) => {
-        state.isLoading = false;
-        state.RocketList = [];
+        const rockets = action.payload.map((item) => ({
+          id: item.id,
+          name: item.rocket_name,
+          disc: item.description,
+          images: item.flickr_images[1],
+          reserved: false,
+        }));
 
-        state.error = action.error.message;
-      });
+        return {
+          ...state,
+          RocketList: rockets,
+          isLoading: false,
+        };
+      })
+      .addCase(getAPI.rejected, (state, action) => ({
+        ...state,
+        isLoading: false,
+        RocketList: [],
+        error: action.error.message,
+      }));
   },
 });
 
