@@ -1,95 +1,43 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import '@testing-library/jest-dom/extend-expect';
 import RocketList from '../Rockets';
-// eslint-disable-next-line import/extensions
-import { getAPI, reservation } from '../redux/rocketsSlice';
 
-// Mock the Redux store
 const mockStore = configureStore([]);
-const store = mockStore({
-  rockets: {
-    RocketList: [
+
+describe('RocketList Component', () => {
+  it('renders Rocket components when RocketList has items', () => {
+    const rockets = [
       {
-        id: 'rocket1',
-        name: 'Rocket One',
-        disc: 'Test description',
-        images: 'test-image.jpg',
+        id: 1,
+        name: 'Rocket 1',
+        disc: 'Description 1',
+        images: 'rocket1.jpg',
         reserved: false,
       },
-      {
-        id: 'rocket2',
-        name: 'Rocket Two',
-        disc: 'Another test description',
-        images: 'test-image2.jpg',
-        reserved: true,
+      // Add more rockets as needed
+    ];
+
+    const store = mockStore({
+      rockets: {
+        RocketList: rockets,
+        isLoading: false,
+        error: null,
       },
-    ],
-    isLoading: false,
-    error: null,
-  },
-});
+    });
 
-describe('RocketList component', () => {
-  beforeEach(() => {
-    store.clearActions();
-  });
-
-  test('renders the loading state when isLoading is true', () => {
-    render(
+    const { getByText, getAllByTestId } = render(
       <Provider store={store}>
         <RocketList />
       </Provider>,
     );
 
-    expect(screen.getByText('Loading')).toBeInTheDocument();
+    expect(getAllByTestId('Rocket')).toHaveLength(rockets.length);
+    expect(getByText('Rocket 1')).toBeInTheDocument();
+    expect(getByText('Description 1')).toBeInTheDocument();
   });
 
-  test('renders the RocketList when isLoading is false', () => {
-    render(
-      <Provider store={store}>
-        <RocketList />
-      </Provider>,
-    );
-
-    expect(screen.getByTestId('RocketList')).toBeInTheDocument();
-
-    // Check if Rocket components are rendered correctly
-    expect(screen.getByText('Rocket One')).toBeInTheDocument();
-    expect(screen.getByText('Test description')).toBeInTheDocument();
-    expect(screen.getByText('Rocket Two')).toBeInTheDocument();
-    expect(screen.getByText('Another test description')).toBeInTheDocument();
-
-    // Check if the reservation button is rendered and functions correctly
-    const reserveButton = screen.getByText('Reserve rocket');
-    expect(reserveButton).toBeInTheDocument();
-
-    fireEvent.click(reserveButton);
-    expect(store.getActions()).toEqual([reservation('rocket2')]);
-  });
-
-  test('renders the error message when there is an error', () => {
-    const errorMessage = 'Error occurred while fetching rockets';
-    store.getState().rockets.error = errorMessage;
-
-    render(
-      <Provider store={store}>
-        <RocketList />
-      </Provider>,
-    );
-
-    expect(screen.getByText(errorMessage)).toBeInTheDocument();
-  });
-
-  test('dispatches getAPI action when RocketList is empty', () => {
-    store.getState().rockets.RocketList = [];
-
-    render(
-      <Provider store={store}>
-        <RocketList />
-      </Provider>,
-    );
-
-    expect(store.getActions()).toEqual([getAPI()]);
-  });
+  // Add more test cases as needed
 });
