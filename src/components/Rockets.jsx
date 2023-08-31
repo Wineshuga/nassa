@@ -96,8 +96,7 @@ Rocket.propTypes = {
   disc: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   Reservation: PropTypes.number.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  reservationState: PropTypes.object.isRequired,
+  reservationState: PropTypes.string.isRequired,
 };
 
 export default RocketList;
