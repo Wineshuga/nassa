@@ -39,12 +39,10 @@ const rocketsSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(getAPI.pending, (state) => (
-        {
-          ...state,
-          isLoading: true,
-        }
-      ))
+      .addCase(getAPI.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
       .addCase(getAPI.fulfilled, (state, action) => {
         const rockets = [];
         action.payload.map((item) => {
