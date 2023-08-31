@@ -51,5 +51,8 @@ exports[`Nav component matches snapshot 1`] = `
       </li>
     </ul>
   </div>
+  <hr
+    class="m-5 my-1"
+  />
 </DocumentFragment>
 `;
