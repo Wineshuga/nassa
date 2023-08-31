@@ -52,11 +52,10 @@
 
 - **Created with react**
 - **Use API**
-
-- - <!-- LIVE DEMO -->
+  - - <!-- LIVE DEMO -->
 - ## 🚀 Live Demo <a name="live-demo"></a>
 
-  - [Live Demo Link]Comming soon
+  - [Live Demo Link](Comming soon)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
