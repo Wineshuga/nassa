@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
@@ -17,7 +16,6 @@ describe('RocketList Component', () => {
         images: 'rocket1.jpg',
         reserved: false,
       },
-      // Add more rockets as needed
     ];
 
     const store = mockStore({
@@ -38,6 +36,4 @@ describe('RocketList Component', () => {
     expect(getByText('Rocket 1')).toBeInTheDocument();
     expect(getByText('Description 1')).toBeInTheDocument();
   });
-
-  // Add more test cases as needed
 });
