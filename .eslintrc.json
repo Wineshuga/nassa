@@ -24,7 +24,8 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "react-a11y/your-rule-name": "off",
-    "import/no-extraneous-dependencies": "off" // Disable the rule
+    "import/no-extraneous-dependencies": "off" ,// Disable the rule
+     "no-param-reassign": "off"
     // Other rules
   },
   "overrides": [
