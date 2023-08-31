@@ -8,7 +8,9 @@ import '../styles/rockets.css';
 const Rocket = () => {
   const rockets = useSelector((state) => state.rockets);
 
-  const myRockets = rockets.RocketList.filter((rocket) => rocket.reserved === true);
+  const myRockets = rockets.RocketList.filter(
+    (rocket) => rocket.reserved === true,
+  );
   if (myRockets.length === 0) {
     return (
       <Col>
@@ -22,7 +24,9 @@ const Rocket = () => {
       <h3>My Rockets</h3>
       <ListGroup as="ol">
         {myRockets.map((rocket) => (
-          <ListGroup.Item as="li" key={rocket.id}>{rocket.name}</ListGroup.Item>
+          <ListGroup.Item as="li" key={rocket.id}>
+            {rocket.name}
+          </ListGroup.Item>
         ))}
       </ListGroup>
     </Col>
@@ -40,15 +44,13 @@ const Mission = () => {
         <p>You have not reserved any missions.</p>
       </Col>
     );
-  } return (
+  }
+  return (
     <Col>
       <h3>My Missions</h3>
       <ListGroup as="ol">
         {myMissions.map((item) => (
-          <ListGroup.Item
-            as="li"
-            key={item.id}
-          >
+          <ListGroup.Item as="li" key={item.id}>
             {item.name}
           </ListGroup.Item>
         ))}
