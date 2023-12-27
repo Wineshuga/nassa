@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMissions, joinMission, leaveMission } from '../redux/mission/missionsSlice';
+import '../styles/app.css';
 
 const Mission = () => {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const Mission = () => {
   ));
 
   return (
-    <section className="m-3 mt-0 p-3 pt-0 table-responsive">
+    <section className="m-3 mt-0 p-3 pt-0 table-responsive-md">
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
