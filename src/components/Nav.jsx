@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+import '../styles/nav.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const links = [
