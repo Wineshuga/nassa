@@ -1,65 +1,60 @@
+.rocketImg {
+  width: 18rem;
+  margin-bottom: 1rem;
+}
+
+.rocketImg > img {
+  width: 100%;
+}
+
 .rocketC {
   display: flex;
-  margin: 10px;
-  margin-left: 70px;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
 }
 
-.rocketImg {
-  width: 280px;
+.reserveBtns {
+  margin-top: 1rem;
 }
 
-.contentC {
-  padding-right: 50px;
-  margin-left: 15px;
+.Cancel-Reservation, .Reservation {
+  border-radius: 5%;
+  padding: 0.5rem;
 }
 
 .Cancel-Reservation {
-  height: 35px;
   background-color: rgb(255, 255, 255);
   color: rgb(119, 119, 119);
-  margin-top: 30px;
-  border-radius: 8%;
   border: solid gray 2px;
 }
 
 .Reservation {
   background-color: #007bff;
   color: rgb(255, 255, 255);
-  border: solid #007bff 2px;
-  height: 35px;
-  margin-top: 30px;
-  border-radius: 8%;
-}
-
-.rocketDesc {
-  font-size: large;
+  border: none;
 }
 
 .reserved {
   background-color: #18a2b8;
   color: white;
+  font-weight: bold;
   padding: 4px 8px;
-  text-align: center;
-  border-radius: 5px;
+  border-radius: 5%;
+  margin-right: 0.5rem;
 }
 
-/* profile */
-.active {
-  color: red;
-}
+@media (min-width: 768px) {
+  .rocketImg {
+    width: 30%;
+    margin: 0 1rem;
+  }
 
-.m-2 {
-  text-decoration: none;
-}
+  .contentC {
+    width: 70%;
+  }
 
-.link {
-  text-decoration: none;
-}
-
-.active-link {
-  text-decoration: underline;
-}
-
-.Logo {
-  width: 50px;
+  .rocketC {
+    flex-direction: row;
+  }
 }
