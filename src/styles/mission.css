@@ -1,0 +1,39 @@
+.mission-desc {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  height: 100px;
+}
+
+.table {
+  font-size: 12px;
+}
+
+.mission-status,
+.table-status,
+.table-btns,
+.mission-btns {
+  display: none;
+}
+
+@media (min-width: 620px) {
+  .table {
+    font-size: 16px;
+    width: auto;
+  }
+
+  .mission-desc {
+    display: block;
+    overflow: visible;
+    white-space: wrap;
+    height: fit-content;
+  }
+
+  .mission-status,
+  .table-status,
+  .table-btns,
+  .mission-btns {
+    display:table-cell;
+  }
+}
