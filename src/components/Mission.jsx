@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -60,7 +61,7 @@ const Mission = () => {
       <td className="mission-desc">
         {
           isMobile ? (
-            <Link to="Mission-details" aria-label={`Details for Mission ${item.name}`}>
+            <Link to="Mission-details">
               <p>
                 { item.desc }
               </p>
