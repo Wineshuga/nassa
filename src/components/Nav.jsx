@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
 import '../styles/nav.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -10,30 +9,34 @@ const links = [
 ];
 const Nav = () => (
   <>
-    <Container className="d-flex flex-wrap align-items-center p-3">
-      <img
-        className="Logo"
-        src="https://spacetravellerhubcapstone.netlify.app/static/media/planet.3f6fb2742f28651730c0.png"
-        alt="Logo"
-        style={{ width: '50px' }}
-      />
-      <h3>Space Travelers&apos; Hub</h3>
-      <ul
-        className="list-unstyled m-2 p-2 d-flex flex-wrap"
-        style={{ justifyContent: 'flex-end', flex: '2' }}
-      >
-        {links.map((link) => (
-          <li key={link.text} className="m-2">
-            <NavLink
-              className={({ isActive }) => (isActive ? 'active-link' : 'link')}
-              to={link.path}
-            >
-              {link.text}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </Container>
+    <section className="nav-container">
+      <div>
+        <img
+          className="Logo"
+          src="https://spacetravellerhubcapstone.netlify.app/static/media/planet.3f6fb2742f28651730c0.png"
+          alt="Logo"
+          style={{ width: '50px' }}
+        />
+        <h3>Space Travelers&apos; Hub</h3>
+      </div>
+      <div>
+        <ul
+          className="list-unstyled m-2 p-2 d-flex flex-wrap"
+        >
+          {links.map((link) => (
+            <li key={link.text} className="m-2">
+              <NavLink
+                className={({ isActive }) => (isActive ? 'active-link' : 'link')}
+                to={link.path}
+              >
+                {link.text}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+
+      </div>
+    </section>
     <hr className="m-5 my-1" />
   </>
 );
