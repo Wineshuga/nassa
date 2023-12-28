@@ -5,10 +5,10 @@ import { fetchMissions, joinMission, leaveMission } from '../redux/mission/missi
 import '../styles/mission.css';
 
 const Mission = () => {
-  const [isDesktop, setDesktop] = useState(window.innerWidth < 620);
+  const [isMobile, setMobile] = useState(window.innerWidth < 620);
 
   const updateMedia = () => {
-    setDesktop(window.innerWidth < 620);
+    setMobile(window.innerWidth < 620);
   };
 
   useEffect(() => {
@@ -32,12 +32,16 @@ const Mission = () => {
   };
 
   const handleButtons = (id, reserved) => {
+    const leaveLabel = `Leave Mission ${id}`;
+    const joinLabel = `Join Mission ${id}`;
+
     if (reserved) {
       return (
         <button
           className="text-danger border-2 border-danger"
           type="button"
           onClick={() => dispatch(leaveMission({ id }))}
+          aria-label={leaveLabel}
         >
           Leave Mission
         </button>
@@ -48,6 +52,7 @@ const Mission = () => {
         className="text-secondary border-2"
         type="button"
         onClick={() => dispatch(joinMission({ id }))}
+        aria-label={joinLabel}
       >
         Join Mission
       </button>
@@ -59,7 +64,7 @@ const Mission = () => {
       <td className="fw-bold">{ item.name }</td>
       <td className="mission-desc">
         {
-          isDesktop ? (
+          isMobile ? (
             <Link to="Mission-details">
               <p>
                 { item.desc }
