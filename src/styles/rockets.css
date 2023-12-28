@@ -18,7 +18,8 @@
   margin-top: 1rem;
 }
 
-.Cancel-Reservation, .Reservation {
+.Cancel-Reservation,
+.Reservation {
   border-radius: 5%;
   padding: 0.5rem;
 }

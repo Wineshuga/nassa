@@ -26,14 +26,14 @@
   .mission-desc {
     display: block;
     overflow: visible;
-    white-space: wrap;
-    height: fit-content;
+    white-space: initial;
+    height: auto;
   }
 
   .mission-status,
   .table-status,
   .table-btns,
   .mission-btns {
-    display:table-cell;
+    display: table-cell;
   }
 }
