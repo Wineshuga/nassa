@@ -37,7 +37,7 @@ const Nav = () => (
 
       </div>
     </section>
-    <hr className="m-5 my-1" />
+    <hr className="m-3 my-1 py-2" />
   </>
 );
 
