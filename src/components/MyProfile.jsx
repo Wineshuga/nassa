@@ -3,7 +3,7 @@ import {
   Container, ListGroup, Row, Col,
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../styles/rockets.css';
+import '../styles/my_profile.css';
 
 const Rocket = () => {
   const rockets = useSelector((state) => state.rockets);
@@ -14,14 +14,14 @@ const Rocket = () => {
   if (myRockets.length === 0) {
     return (
       <Col>
-        <h3>My Rockets</h3>
+        <h3 className="profile-heading">My Rockets</h3>
         You have not reserved any rockets.
       </Col>
     );
   }
   return (
     <Col>
-      <h3>My Rockets</h3>
+      <h3 className="profile-heading">My Rockets</h3>
       <ListGroup as="ol">
         {myRockets.map((rocket) => (
           <ListGroup.Item as="li" key={rocket.id}>
@@ -40,14 +40,14 @@ const Mission = () => {
   if (myMissions.length === 0) {
     return (
       <Col>
-        <h3>My Missions</h3>
+        <h3 className="profile-heading">My Missions</h3>
         <p>You have not reserved any missions.</p>
       </Col>
     );
   }
   return (
     <Col>
-      <h3>My Missions</h3>
+      <h3 className="profile-heading">My Missions</h3>
       <ListGroup as="ol">
         {myMissions.map((item) => (
           <ListGroup.Item as="li" key={item.id}>
