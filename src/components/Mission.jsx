@@ -32,16 +32,12 @@ const Mission = () => {
   };
 
   const handleButtons = (id, reserved) => {
-    const leaveLabel = `Leave Mission ${id}`;
-    const joinLabel = `Join Mission ${id}`;
-
     if (reserved) {
       return (
         <button
           className="text-danger border-2 border-danger"
           type="button"
           onClick={() => dispatch(leaveMission({ id }))}
-          aria-label={leaveLabel}
         >
           Leave Mission
         </button>
@@ -52,7 +48,6 @@ const Mission = () => {
         className="text-secondary border-2"
         type="button"
         onClick={() => dispatch(joinMission({ id }))}
-        aria-label={joinLabel}
       >
         Join Mission
       </button>
@@ -65,7 +60,7 @@ const Mission = () => {
       <td className="mission-desc">
         {
           isMobile ? (
-            <Link to="Mission-details">
+            <Link to="Mission-details" aria-label={`Details for Mission ${item.name}`}>
               <p>
                 { item.desc }
               </p>
