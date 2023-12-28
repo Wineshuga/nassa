@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import MyProfile from './components/MyProfile';
 import Mission from './components/Mission';
 import Rockets from './components/Rockets';
+import MissionDetails from './components/MissionDetails';
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Rockets />} />
           <Route path="/MyProfile" element={<MyProfile />} />
-          <Route path="/Mission" element={<Mission />} />
+          <Route path="/Mission" element={<Mission />}>
+            <Route path="Mission-details" element={<MissionDetails />} />
+          </Route>
           <Route path="*" element={<h3>No Match</h3>} />
         </Routes>
       </BrowserRouter>
