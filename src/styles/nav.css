@@ -1,0 +1,39 @@
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 0 1rem;
+}
+
+.nav-container div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.active {
+  color: red;
+}
+
+.m-2 {
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.active-link {
+  text-decoration: underline;
+}
+
+.Logo {
+  width: 50px;
+}
+
+@media (min-width: 580px) {
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

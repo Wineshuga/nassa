@@ -1,8 +1,21 @@
-import { useEffect } from 'react';
+/* eslint-disable jsx-a11y/control-has-associated-label */
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchMissions, joinMission, leaveMission } from '../redux/mission/missionsSlice';
+import '../styles/mission.css';
 
 const Mission = () => {
+  const [isMobile, setMobile] = useState(window.innerWidth < 620);
+
+  const updateMedia = () => {
+    setMobile(window.innerWidth < 620);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  });
   const dispatch = useDispatch();
   const missions = useSelector((store) => store.missions.missions);
 
@@ -45,25 +58,39 @@ const Mission = () => {
   const mission = missions.map((item) => (
     <tr key={item.id}>
       <td className="fw-bold">{ item.name }</td>
-      <td>{ item.desc }</td>
-      <td className="align-middle text-center">
+      <td className="mission-desc">
+        {
+          isMobile ? (
+            <Link to="Mission-details">
+              <p>
+                { item.desc }
+              </p>
+            </Link>
+          ) : (
+            <p>
+              { item.desc }
+            </p>
+          )
+        }
+      </td>
+      <td className="mission-status align-middle text-center">
         {handleStatus(item.reserved)}
       </td>
-      <td className="align-middle text-center">
+      <td className="mission-btns align-middle text-center">
         {handleButtons(item.id, item.reserved)}
       </td>
     </tr>
   ));
 
   return (
-    <section className="m-3 mt-0 p-3 pt-0 table-responsive">
+    <section className="table-responsive-md">
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
             <th width="150">Mission</th>
             <th>Description</th>
-            <th width="150">Status</th>
-            <th width="150"> </th>
+            <th width="150" className="table-status">Status</th>
+            <th width="150" className="table-btns"> </th>
           </tr>
         </thead>
         <tbody>

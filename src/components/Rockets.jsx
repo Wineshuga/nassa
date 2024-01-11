@@ -45,7 +45,9 @@ const Rocket = ({ item, reservationAction }) => {
 
   return (
     <div className="rocketC" key={id} data-testid="Rocket">
-      <img className="rocketImg" src={images} alt={name} />
+      <div className="rocketImg">
+        <img src={images} alt={name} />
+      </div>
       <div className="contentC">
         <h4 className="rocektName">{name}</h4>
         <div className="rocketDesc">
@@ -59,6 +61,7 @@ const Rocket = ({ item, reservationAction }) => {
           )}
         </div>
         <div
+          className="reserveBtns"
           role="button"
           tabIndex="0"
           onClick={reservationAction}
